@@ -10,7 +10,7 @@
 <%@page import="java.util.HashMap"%> 
 <%@page import="javax.swing.table.DefaultTableModel"%>
 
-<
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,8 +20,20 @@
 
     </head>
     <body>
-        <h1 class="text-center">Formulario Estudiantes</h1>
-                          <div class="container">
+        
+  <div class="container">
+  <h2 class="text-center">Formulario Estudiante</h2>
+  
+  <button  type="button" class=" btn btn-primary txt-center " data-toggle="modal" data-target="#modal_estudiante" onclick="limpiar()">Nuevo Formulario</button>
+
+  <div class="modal" id="modal_estudiante">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal body -->
+        <div class="modal-body">
+                <h1 class="text-center">Formulario Estudiantes</h1>
+        <div class="container">
         <form action ="sr_estudiante" method="post" class="row g-3 needs-validation" novalidate>
             
      
@@ -71,14 +83,23 @@
             
            <div class="col-md-12">
                <br>
-                 <button class="btn btn-success btn-lg"  name="btn_agregar" id="btn_agregar" value="agregar"  ><i class="bi bi-pencil-fill"></i>Agregar</button>
+                 <button class="btn btn-secondary btn-lg"  name="btn_agregar" id="btn_agregar" value="agregar"  ><i class="bi bi-pencil-fill"></i>Agregar</button>
           
            <button  class="btn btn-success btn-lg" id="btn_actualizar" name="btn_actualizar" value="actualizar"><i class="bi bi-pencil-fill"></i> Actualizar</button>
            <button  class="btn btn-danger btn-lg" id="btn_borrar" name="btn_borrar" value="borrar"><i class="bi bi-trash3-fill"></i> Borrar</button>
-              </div> 
+             <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"><i class="bi bi-trash3-fill"></i>Close</button>  
+           </div> 
         </form>
         </div>
-                                <table class="table">
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+    <table class="table">
     <thead> 
       <tr>
           <th>id</th>
