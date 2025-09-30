@@ -36,7 +36,8 @@
         <div class="container">
         <form action ="sr_estudiante" method="post" class="row g-3 needs-validation" novalidate>
             
-     
+                 <label for="lbl_id">Id:</label>
+                <input type="number"  name="txt_id" id="txt_id" class="form-control"  value="0" readonly>
 
                 <div class="col-md-6">
             <label for="lbl_carne" class="form-label">Carné</label>
@@ -86,7 +87,7 @@
                  <button class="btn btn-secondary btn-lg"  name="btn_agregar" id="btn_agregar" value="agregar"  ><i class="bi bi-pencil-fill"></i>Agregar</button>
           
            <button  class="btn btn-success btn-lg" id="btn_actualizar" name="btn_actualizar" value="actualizar"><i class="bi bi-pencil-fill"></i> Actualizar</button>
-           <button  class="btn btn-danger btn-lg" id="btn_borrar" name="btn_borrar" value="borrar"><i class="bi bi-trash3-fill"></i> Borrar</button>
+           <button  class="btn btn-danger btn-lg" id="btn_borrar" name="btn_borrar" value="borrar"><i class="bi bi-trash3-fill"  onclick="javascript:if(!confirm('¿Deseas eliminar?'))return false "></i> Borrar</button>
              <button type="button" class="btn btn-info btn-lg" data-dismiss="modal"><i class="bi bi-trash3-fill"></i>Close</button>  
            </div> 
         </form>
@@ -102,7 +103,7 @@
     <table class="table">
     <thead> 
       <tr>
-          <th>id</th>
+        
         <th>Carné</th>
         <th>Nombres</th>
         <th>Apellidos</th>
@@ -121,9 +122,9 @@
 Estudiante estudiante = new Estudiante();
 DefaultTableModel tabla = new DefaultTableModel();
 tabla = estudiante.leer();
-for (int t=0; t<tabla.getRowCount();t++){
 
-out.println("<td>"+tabla.getValueAt(t,0)+"</td>");
+for (int t=0; t<tabla.getRowCount();t++){
+out.println("<tr data-id="+tabla.getValueAt(t,0)+" data-id_s="+tabla.getValueAt(t,8)+"  >");
 out.println("<td>"+tabla.getValueAt(t,1)+"</td>");
 out.println("<td>"+tabla.getValueAt(t,2)+"</td>");
 out.println("<td>"+tabla.getValueAt(t,3)+"</td>");
@@ -132,6 +133,8 @@ out.println("<td>"+tabla.getValueAt(t,5)+"</td>");
 out.println("<td>"+tabla.getValueAt(t,6)+"</td>");
 out.println("<td>"+tabla.getValueAt(t,7)+"</td>");
 out.println("<td>"+tabla.getValueAt(t,8)+"</td>");
+
+
 
 
 out.println("</tr>");
@@ -167,5 +170,50 @@ out.println("</tr>");
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+   
+    <script type="text/javascript">
+    function limpiar(){
+         $("#txt_id").val(0);
+        $("#txt_carne").val('');
+        $("#txt_nombres").val('');
+        $("#txt_apellidos").val('');
+        $("#txt_direccion").val('');
+        $("#txt_ce").val('');
+        $("#txt_telefono").val('');
+        $("#txt_fn").val('');
+         $("#drop_sangre").val(1);
+        
+        
+    }
+    
+    $('#tbl_estudiantes').on('click','tr td',function(evt){
+     var target, id,carne,nombres,apellidos,direccion,correo,telefono,nacimiento,id_tipo_sangre;
+     target = $ (event.target);
+     id= target.parent().data('id');
+     id_tipo_sangre= target.parent().data('id_tipo_sangre');
+    
+      carne = target.parent("tr").find("td").eq(0).html();
+      nombres= target.parent("tr").find("td").eq(1).html();
+      apellidos = target.parent("tr").find("td").eq(2).html();
+      direccion = target.parent("tr").find("td").eq(3).html();
+      correo = target.parent("tr").find("td").eq(4).html();
+      telefono = target.parent("tr").find("td").eq(5).html();
+      nacimiento = target.parent("tr").find("td").eq(6).html();
+      id_tipo_sangre = target.parent("tr").find("td").eq(7).html();
+       
+        $("#txt_id").val(id);
+        $("#txt_carne").val(carne);
+        $("#txt_nombres").val(nombres);
+        $("#txt_apellidos").val(apellidos);
+        $("#txt_direccion").val(direccion);
+        $("#txt_ce").val(correo);
+        $("#txt_telefono").val(telefono);
+        $("#txt_fn").val(nacimiento);
+         $("#drop_sangre").val(id_tipo_sangre);
+         $("#modal_estudiante").modal('show');
+         
+    });
+    </script>
+
     </body>
 </html>

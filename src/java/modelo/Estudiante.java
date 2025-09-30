@@ -16,14 +16,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Estudiante {
     Conexion cn;
-    private int id;
+    private int id_estudiante;
     private String carne,nombres,apellidos,direccion,correo,telefono,fecha_nacimiento;
 
     public Estudiante() {
     }
 
     public Estudiante(int id, String carne, String nombres, String apellidos, String direccion, String correo, String telefono, String fecha_nacimiento) {
-        this.id = id;
+        this.id_estudiante = id;
         this.carne = carne;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -36,11 +36,11 @@ public class Estudiante {
   
 
     public int getId() {
-        return id;
+        return id_estudiante;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_estudiante= id;
     }
 
     public String getCarne() {
